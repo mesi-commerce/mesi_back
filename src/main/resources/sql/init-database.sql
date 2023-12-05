@@ -1,3 +1,5 @@
+CREATE DATABASE mesi;
+
 CREATE TABLE mesi.utilisateur (
                                   id INT,
                                   nom VARCHAR(255),
