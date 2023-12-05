@@ -1,25 +1,31 @@
+DROP TABLE IF EXISTS utilisateur;
+
 CREATE TABLE utilisateur (
-                                  id INT,
-                                  nom VARCHAR(255),
-                                  mot_de_passe VARCHAR(255),
-                                  email VARCHAR(255) UNIQUE,
-                                  est_vendeur BOOLEAN,
-                                  nom_utilisateur VARCHAR(255) UNIQUE,
-                                  PRIMARY KEY (id)
+                             id INT,
+                             nom VARCHAR(255),
+                             mot_de_passe VARCHAR(255),
+                             email VARCHAR(255) UNIQUE,
+                             est_vendeur BOOLEAN,
+                             nom_utilisateur VARCHAR(255) UNIQUE,
+                             PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS adresse;
+
 CREATE TABLE adresse (
-                              id INT,
-                              utilisateur_id INT,
-                              est_active BOOLEAN,
-                              pays VARCHAR(255),
-                              ville VARCHAR(255),
-                              nom_de_rue VARCHAR(255),
-                              numero_de_voie_id INT,
-                              complement VARCHAR(255),
-                              PRIMARY KEY (id),
-                              FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
+                         id INT,
+                         utilisateur_id INT,
+                         est_active BOOLEAN,
+                         pays VARCHAR(255),
+                         ville VARCHAR(255),
+                         nom_de_rue VARCHAR(255),
+                         numero_de_voie_id INT,
+                         complement VARCHAR(255),
+                         PRIMARY KEY (id),
+                         FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
 );
+
+DROP TABLE IF EXISTS categorie;
 
 CREATE TABLE categorie (
                            id INT,
@@ -27,6 +33,8 @@ CREATE TABLE categorie (
                            description VARCHAR(255),
                            PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS article;
 
 CREATE TABLE article (
                          id INT,
@@ -41,6 +49,8 @@ CREATE TABLE article (
                          FOREIGN KEY (vendeur_id) REFERENCES utilisateur(id)
 );
 
+DROP TABLE IF EXISTS conversation;
+
 CREATE TABLE conversation (
                               id INT,
                               objet VARCHAR(255),
@@ -51,6 +61,8 @@ CREATE TABLE conversation (
                               FOREIGN KEY (utilisateur_1_id) REFERENCES utilisateur(id),
                               FOREIGN KEY (utilisateur_2_id) REFERENCES utilisateur(id)
 );
+
+DROP TABLE IF EXISTS message;
 
 CREATE TABLE message (
                          id INT,
@@ -63,6 +75,8 @@ CREATE TABLE message (
                          FOREIGN KEY (redacteur_id) REFERENCES utilisateur(id)
 );
 
+DROP TABLE IF EXISTS panier;
+
 CREATE TABLE panier (
                         article_id INT,
                         utilisateur_id INT,
@@ -70,6 +84,8 @@ CREATE TABLE panier (
                         FOREIGN KEY (article_id) REFERENCES article(id),
                         FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
 );
+
+DROP TABLE IF EXISTS commande;
 
 CREATE TABLE commande (
                           id INT,
@@ -82,6 +98,8 @@ CREATE TABLE commande (
                           FOREIGN KEY (adresse_facturation_id) REFERENCES adresse(id),
                           FOREIGN KEY (utilisateur_id) REFERENCES utilisateur(id)
 );
+
+DROP TABLE IF EXISTS commande_article;
 
 CREATE TABLE commande_article (
                                   article_id INT,
