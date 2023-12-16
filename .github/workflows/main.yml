@@ -19,6 +19,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_prod.sh
       - name: Deploy to Preproduction
-        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'prod'
+        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'dev'
         run: |
           ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_pre.sh
+ 
