@@ -22,4 +22,4 @@ jobs:
       - name: Deploy to Production
         if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'production'
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_script.sh
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_prod.sh
