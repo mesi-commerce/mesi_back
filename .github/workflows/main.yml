@@ -1,0 +1,24 @@
+name: Deploy on Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production
+        if: github.event.pull_request.merged == true
+        run: |
+          if [ "${{ github.event.pull_request.base.ref }}" == "prod" ]; then
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_prod.sh
+          elif [ "${{ github.event.pull_request.base.ref }}" == "dev" ]; then
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_pre.sh
+          else
+            echo "No deployment script specified for this branch."
+          fi
