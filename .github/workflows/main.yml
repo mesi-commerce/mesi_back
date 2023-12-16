@@ -1,4 +1,4 @@
-name: Deploy on Merge
+name: Deploy to Production
 
 on:
   pull_request:
@@ -9,16 +9,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Use Node.js 21.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21.x' # Utilisez la version 16.x ou une version compatible.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Deploy to Production
-        if: github.event.pull_request.merged == true
+        if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'production'
         run: |
-          if [ "${{ github.event.pull_request.base.ref }}" == "prod" ]; then
-            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_prod.sh
-          elif [ "${{ github.event.pull_request.base.ref }}" == "dev" ]; then
-            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_pre.sh
-          else
-            echo "No deployment script specified for this branch."
-          fi
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KEY }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < deploy_script.sh
