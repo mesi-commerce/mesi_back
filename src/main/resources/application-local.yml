@@ -1,0 +1,12 @@
+#à adapter pour chacuns
+
+server:
+  port:8080
+spring:
+datasource:
+  url:jdbc:mysql://localhost:3306/mesi_local
+  username:root
+  password:admin
+logging:
+level:
+  root:DEBUG
