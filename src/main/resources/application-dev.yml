@@ -1,0 +1,9 @@
+server:
+  port:8081
+database:
+  url:jdbc:mysql://devdb.example.com:3306/devdb
+  username:devuser
+  password:devpassword
+logging:
+level:
+  root:INFO
