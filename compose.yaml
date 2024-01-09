@@ -1,5 +1,5 @@
 services:
-  app:
+  backend:
     image: openjdk:21-jdk
     build:
       context: .
@@ -18,10 +18,10 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - todo-mysql-data:/var/lib/mysql
+      - mesi-mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: mesi
 
 volumes:
-  todo-mysql-data:
+  mesi-mysql-data:
