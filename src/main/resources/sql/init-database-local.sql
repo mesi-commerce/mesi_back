@@ -9,7 +9,6 @@ CREATE TABLE mesi_local.utilisateur (
                                         nom VARCHAR(255),
                                         mot_de_passe VARCHAR(255),
                                         email VARCHAR(255) UNIQUE,
-                                        est_vendeur BOOLEAN,
                                         nom_utilisateur VARCHAR(255) UNIQUE,
                                         PRIMARY KEY (id)
 );
