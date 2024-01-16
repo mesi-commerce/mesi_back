@@ -1,5 +1,6 @@
 package com.example.mesi.config;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 @EnableWebMvc
 public class WebConfig {
     @Bean
-    public CorsFilter corsFilter() {
+    public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
@@ -33,10 +34,8 @@ public class WebConfig {
         ));
         config.setMaxAge(3600L);
         source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source);
-        //à essayer d'implémenter return FilterRegistrationBean au lieu de CorsFilter
-//        FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
-//        bean.setOrder(-102);
-//        return bean;
+        FilterRegistrationBean bean = new FilterRegistrationBean<>(new CorsFilter(source));
+        bean.setOrder(-102);
+        return bean;
     }
 }
