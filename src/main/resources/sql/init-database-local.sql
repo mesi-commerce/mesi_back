@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS mesi_local;
 DROP TABLE IF EXISTS mesi_local.utilisateur;
 
 CREATE TABLE mesi_local.utilisateur (
-                                        id INT,
+                                        id INT NOT NULL AUTO_INCREMENT,
                                         nom VARCHAR(255),
                                         mot_de_passe VARCHAR(255),
                                         email VARCHAR(255) UNIQUE,
