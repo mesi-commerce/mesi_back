@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS utilisateur;
 
 CREATE TABLE utilisateur (
-                             id INT,
+                             id INT NOT NULL AUTO_INCREMENT,
                              nom VARCHAR(255),
                              mot_de_passe VARCHAR(255),
                              email VARCHAR(255) UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE utilisateur (
 DROP TABLE IF EXISTS adresse;
 
 CREATE TABLE adresse (
-                         id INT,
+                         id INT NOT NULL AUTO_INCREMENT,
                          utilisateur_id INT,
                          est_active BOOLEAN,
                          pays VARCHAR(255),
@@ -27,7 +27,7 @@ CREATE TABLE adresse (
 DROP TABLE IF EXISTS categorie;
 
 CREATE TABLE categorie (
-                           id INT,
+                           id INT NOT NULL AUTO_INCREMENT,
                            nom VARCHAR(255) UNIQUE,
                            description VARCHAR(255),
                            PRIMARY KEY (id)
@@ -36,7 +36,7 @@ CREATE TABLE categorie (
 DROP TABLE IF EXISTS article;
 
 CREATE TABLE article (
-                         id INT,
+                         id INT NOT NULL AUTO_INCREMENT,
                          vendeur_id INT,
                          nom VARCHAR(255),
                          note INT,
@@ -51,7 +51,7 @@ CREATE TABLE article (
 DROP TABLE IF EXISTS conversation;
 
 CREATE TABLE conversation (
-                              id INT,
+                              id INT NOT NULL AUTO_INCREMENT,
                               objet VARCHAR(255),
                               date_conversation DATETIME,
                               utilisateur_1_id INT,
@@ -64,7 +64,7 @@ CREATE TABLE conversation (
 DROP TABLE IF EXISTS message;
 
 CREATE TABLE message (
-                         id INT,
+                         id INT NOT NULL AUTO_INCREMENT,
                          date_message DATETIME,
                          message VARCHAR(255),
                          conversation_id INT,
@@ -77,7 +77,7 @@ CREATE TABLE message (
 DROP TABLE IF EXISTS panier;
 
 CREATE TABLE panier (
-                        article_id INT,
+                        article_id INT NOT NULL AUTO_INCREMENT,
                         utilisateur_id INT,
                         quantite INT,
                         FOREIGN KEY (article_id) REFERENCES article(id),
@@ -87,7 +87,7 @@ CREATE TABLE panier (
 DROP TABLE IF EXISTS commande;
 
 CREATE TABLE commande (
-                          id INT,
+                          id INT NOT NULL AUTO_INCREMENT,
                           adresse_livraison_id INT,
                           adresse_facturation_id INT,
                           date_commande DATE,
@@ -101,7 +101,7 @@ CREATE TABLE commande (
 DROP TABLE IF EXISTS commande_article;
 
 CREATE TABLE commande_article (
-                                  article_id INT,
+                                  article_id INT NOT NULL AUTO_INCREMENT,
                                   commande_id INT,
                                   quantite INT,
                                   FOREIGN KEY (article_id) REFERENCES article(id),

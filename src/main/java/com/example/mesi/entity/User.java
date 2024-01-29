@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -24,4 +26,7 @@ public class User {
     private String login;
     @Column(name = "mot_de_passe")
     private String password;
+
+    @OneToMany()
+    private List<Article> articleList;
 }
