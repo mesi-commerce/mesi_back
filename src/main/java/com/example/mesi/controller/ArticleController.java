@@ -32,4 +32,23 @@ public class ArticleController {
                 )
         );
     }
+
+    @PostMapping("/save")
+    public ResponseEntity<ArticleDto> saveOrUpdateArticle(@RequestBody ArticleDto articleDto) {
+        return ResponseEntity.ok(
+                articleMapper.toArticleDto(
+                        articleService.saveOrUpdateArticle(
+                                articleMapper.toArticle(articleDto)
+                        )
+                )
+        );
+    }
+
+
+    @DeleteMapping("/{articleId}")
+    public ResponseEntity<Boolean> deleteArticleById(@PathVariable Long articleId) {
+        return ResponseEntity.ok(
+                articleService.deleteArticleById(articleId)
+        );
+    }
 }

@@ -20,4 +20,18 @@ public class ArticleService {
     public Article findArticleById(Long id) {
         return articleRepository.findById(id).orElse(null);
     }
+
+    public boolean deleteArticleById(Long id) {
+        Optional<Article> articleToDelete = articleRepository.findById(id);
+        if (articleToDelete.isPresent()) {
+            articleRepository.delete(articleToDelete.get());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Article saveOrUpdateArticle(Article article) {
+            return articleRepository.save(article);
+    }
 }
