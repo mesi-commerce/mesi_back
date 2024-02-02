@@ -22,6 +22,7 @@ public class WebConfig {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedOrigin("http://127.0.0.1:4200");
+        config.addAllowedOrigin("https://preprod.novelstyle.store");
         config.setAllowedHeaders(Arrays.asList(
                 HttpHeaders.AUTHORIZATION,
                 HttpHeaders.CONTENT_TYPE,
