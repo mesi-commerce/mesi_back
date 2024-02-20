@@ -5,11 +5,10 @@ CREATE DATABASE IF NOT EXISTS mesi_local;
 DROP TABLE IF EXISTS mesi_local.utilisateur;
 
 CREATE TABLE mesi_local.utilisateur (
-                                        id INT,
+                                        id INT NOT NULL AUTO_INCREMENT,
                                         nom VARCHAR(255),
                                         mot_de_passe VARCHAR(255),
                                         email VARCHAR(255) UNIQUE,
-                                        est_vendeur BOOLEAN,
                                         nom_utilisateur VARCHAR(255) UNIQUE,
                                         PRIMARY KEY (id)
 );
@@ -17,7 +16,7 @@ CREATE TABLE mesi_local.utilisateur (
 DROP TABLE IF EXISTS mesi_local.adresse;
 
 CREATE TABLE mesi_local.adresse (
-                                    id INT,
+                                    id INT NOT NULL AUTO_INCREMENT,
                                     utilisateur_id INT,
                                     est_active BOOLEAN,
                                     pays VARCHAR(255),
@@ -32,7 +31,7 @@ CREATE TABLE mesi_local.adresse (
 DROP TABLE IF EXISTS mesi_local.categorie;
 
 CREATE TABLE mesi_local.categorie (
-                                      id INT,
+                                      id INT NOT NULL AUTO_INCREMENT,
                                       nom VARCHAR(255) UNIQUE,
                                       description VARCHAR(255),
                                       PRIMARY KEY (id)
@@ -41,7 +40,7 @@ CREATE TABLE mesi_local.categorie (
 DROP TABLE IF EXISTS mesi_local.article;
 
 CREATE TABLE mesi_local.article (
-                                    id INT,
+                                    id INT NOT NULL AUTO_INCREMENT,
                                     vendeur_id INT,
                                     nom VARCHAR(255),
                                     note INT,
@@ -56,7 +55,7 @@ CREATE TABLE mesi_local.article (
 DROP TABLE IF EXISTS mesi_local.conversation;
 
 CREATE TABLE mesi_local.conversation (
-                                         id INT,
+                                         id INT NOT NULL AUTO_INCREMENT,
                                          objet VARCHAR(255),
                                          date_conversation DATETIME,
                                          utilisateur_1_id INT,
@@ -69,7 +68,7 @@ CREATE TABLE mesi_local.conversation (
 DROP TABLE IF EXISTS mesi_local.message;
 
 CREATE TABLE mesi_local.message (
-                                    id INT,
+                                    id INT NOT NULL AUTO_INCREMENT,
                                     date_message DATETIME,
                                     message VARCHAR(255),
                                     conversation_id INT,
@@ -82,7 +81,7 @@ CREATE TABLE mesi_local.message (
 DROP TABLE IF EXISTS mesi_local.panier;
 
 CREATE TABLE mesi_local.panier (
-                                   article_id INT,
+                                   article_id INT NOT NULL AUTO_INCREMENT,
                                    utilisateur_id INT,
                                    quantite INT,
                                    FOREIGN KEY (article_id) REFERENCES article(id),
@@ -92,7 +91,7 @@ CREATE TABLE mesi_local.panier (
 DROP TABLE IF EXISTS mesi_local.commande;
 
 CREATE TABLE mesi_local.commande (
-                                     id INT,
+                                     id INT NOT NULL AUTO_INCREMENT,
                                      adresse_livraison_id INT,
                                      adresse_facturation_id INT,
                                      date_commande DATE,
