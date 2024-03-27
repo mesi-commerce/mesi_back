@@ -46,4 +46,8 @@ public class UserService {
         User savedUser = userRepository.save(user);
         return userMapper.toUserDto(savedUser);
     }
+
+    public User getVendeur(String vendeur) {
+        return userRepository.findByLogin(vendeur).orElse(null);
+    }
 }

@@ -12,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
+    private final UserService userService;
 
     public List<Article> findAllArticles() {
         return this.articleRepository.findAll();
@@ -31,7 +32,8 @@ public class ArticleService {
         }
     }
 
-    public Article saveOrUpdateArticle(Article article) {
+    public Article saveOrUpdateArticle(Article article, String vendeur) {
+            article.setVendeur(userService.getVendeur(vendeur));
             return articleRepository.save(article);
     }
 }

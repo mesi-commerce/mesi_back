@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 public class ArticleDto {
     private Long id;
-    private UserDto vendeur;
+    private String vendeur;
     private String nom;
     private Integer note;
     private Integer stock;

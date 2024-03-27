@@ -19,7 +19,11 @@ public class ArticleController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ArticleDto>> findAllArticles() {
-        return ResponseEntity.ok(articleMapper.toArticleDtoList(articleService.findAllArticles()));
+        return ResponseEntity.ok(
+                articleMapper.toArticleDtoList(
+                        articleService.findAllArticles()
+                )
+        );
     }
 
     @GetMapping("/{articleId}")
@@ -38,7 +42,8 @@ public class ArticleController {
         return ResponseEntity.ok(
                 articleMapper.toArticleDto(
                         articleService.saveOrUpdateArticle(
-                                articleMapper.toArticle(articleDto)
+                                articleMapper.toArticle(articleDto),
+                                articleDto.getVendeur()
                         )
                 )
         );
